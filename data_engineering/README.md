@@ -8,11 +8,11 @@ The course focuses on understanding the pipeline:
 
 The components include:
 
-    * Sourcing
-    * Ingesting
-    * Transformation
-    * Storing 
-    * Querying
+* Sourcing
+* Ingesting
+* Transformation
+* Storing 
+* Querying
 
 
 
