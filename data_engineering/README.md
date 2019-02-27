@@ -7,6 +7,7 @@ The course focuses on understanding the pipeline:
 ![alt text](https://github.com/wcex1994/hailey_profile/blob/master/data_engineering/pipeline.jpg "Pipieline")
 
 The components include:
+
     * Sourcing
     * Ingesting
     * Transformation
