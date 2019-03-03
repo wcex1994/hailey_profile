@@ -33,10 +33,10 @@ By default, this information is stored in a directory named **.git** in the root
 
 Help (two options)
 
-    ```bash
-    git help <command>
-    man git-commit #put a dash in the git command
-    ```
+```
+git help <command>
+man git-commit #put a dash in the git command
+```
 
 Clone
 
