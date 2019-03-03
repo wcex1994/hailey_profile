@@ -33,7 +33,7 @@ By default, this information is stored in a directory named **.git** in the root
 
 Help (two options)
 
-    ```
+    ```bash
     git help <command>
     man git-commit #put a dash in the git command
     ```
@@ -134,7 +134,7 @@ Difference
 
 Branching
 
-    ```
+    ```bash
     git branch NAME_OF_BRANCH
     git checkout NAME_OF_BRANCH
 
@@ -152,6 +152,7 @@ Remotes
 A remote is a reference to another repo.
 
     ```
+
     git remote add NAME ~/net-auto #NAME is purly symbolic, location of the remote repo in this case is on the same system
 
     # Now you have asymmetric link between the two remotes
