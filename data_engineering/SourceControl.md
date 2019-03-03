@@ -33,7 +33,7 @@ By default, this information is stored in a directory named **.git** in the root
 
 Help (two options)
 
-    ```Bash
+    ```
     git help <command>
     man git-commit #put a dash in the git command
     ```
@@ -43,13 +43,13 @@ Clone
 Repository is the location of the repository you’re cloning
 Directory is the (optional) directory where you’d like to place the cloned repository
 
-    ```Bash
+    ```
     git clone repository directory
     ```
 
 Creating repository
 
-    ```Bash
+    ```
     mkdir NAME_OF_DIRECTORY #make the folder
     cd NAME_OF_DIRECTORY #go to the folder
     git init #create the .git direcotry and all related subdirectory
@@ -58,13 +58,13 @@ Creating repository
 
 Remove repository
 
-    ```Bash
+    ```
     rm -rf repository
     ```
 
 Adding files to a repo
 
-    ```Bash
+    ```
     # 1. Add files to the working directory
     cp SOURCE DEST #on Mac and Linux
     copy *.txt c:\ #on Windows
@@ -94,13 +94,13 @@ Adding files to a repo
 
 Unstaging files
 
-    ```Bash
+    ```
     git reset HEAD sw5.txt #HEAD is the pointer referencing the last commit you made 
     ```
 
 Excluding files per repo
 
-    ```Bash
+    ```
     # 1. create empty .gitignore file and edit it and add credential.yml on a single line in the file 
     touch .gitignore
     # 2. commit it as usual
@@ -111,13 +111,13 @@ Excluding files per repo
 
 Tree
 
-    ```Bash
+    ```
     git ls-tree SHA_Hash
     ```
 
 Log
 
-    ```Bash
+    ```
     git log --oneline
     git log start SHA..end SHA #look at specific commit
     git log HEAD~1..HEAD #use HEAD to reference HEAD~1 is the commit just before HEAD
@@ -127,14 +127,14 @@ Log
 
 Difference
 
-    ```Bash
+    ```
     git diff 9547063..679c41c sw1.txt #two commits and the file to compare
     it diff --cached #if staged but not committed yet
     ```
 
 Branching
 
-    ```Bash
+    ```
     git branch NAME_OF_BRANCH
     git checkout NAME_OF_BRANCH
 
@@ -151,7 +151,7 @@ Branching
 Remotes
 A remote is a reference to another repo.
 
-    ```Bash
+    ```
     git remote add NAME ~/net-auto #NAME is purly symbolic, location of the remote repo in this case is on the same system
 
     # Now you have asymmetric link between the two remotes
