@@ -23,4 +23,6 @@ Source: <https://blog.insightdatascience.com/data-science-vs-data-engineering-62
 
 ### Difference between event data and entity data
 
+![alt text](https://github.com/wcex1994/hailey_profile/blob/master/data_engineering/entity_vs_event_data.png "entity_vs_event_data")
+
 Source: <https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data/>
