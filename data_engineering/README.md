@@ -14,5 +14,13 @@ The components include:
 * Storing 
 * Querying
 
+### Difference between Data Engineering and Data Science
 
+* Data Science: Asking the right questions on any given datasets
+* Data Engineer: Gathering and collecting the data, storing it, doing batch processing or real-time processing on it, and serving it via an API to a data scientist who can easily query it
 
+Source: <https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa>
+
+### Difference between event data and entity data
+
+Source: <https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data/>
