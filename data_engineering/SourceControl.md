@@ -15,9 +15,9 @@ The benefits for source control include:
 THere are few Git terminology:
 
 * **Repository**: Database contains all of a project’s information (files and metadata) and history.
-* **:Working directory**:: This is the directory where you, as the user of Git, will modify the files contained in the repository.
-* **:Index**:: Repo’s directory structure at a point in time.
-* **:Commit**:: An entry in the repo recording metadata for each change introduced to the repo.
+* **Working directory**: This is the directory where you, as the user of Git, will modify the files contained in the repository.
+* **Index**: Repo’s directory structure at a point in time.
+* **Commit**: An entry in the repo recording metadata for each change introduced to the repo.
 
 ### Architecture
 
