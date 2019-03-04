@@ -1,0 +1,7 @@
+
+count,start_station_name,end_station_name,AvgDuration,MaxDuration,MinDuration
+3667,Harry Bridges Plaza (Ferry Building),Embarcadero at Sansome,38.06424870466318,1186.3333333333333,4.266666666666667
+2545,Embarcadero at Sansome,Embarcadero at Sansome,78.73677799607057,1675.2666666666667,1.0
+2004,Harry Bridges Plaza (Ferry Building),Harry Bridges Plaza (Ferry Building),113.374617431803,3235.5833333333335,1.0
+1638,Embarcadero at Sansome,Harry Bridges Plaza (Ferry Building),27.985470085470077,910.0166666666667,3.683333333333333
+1345,Embarcadero at Vallejo,Embarcadero at Sansome,44.58836431226767,1394.05,3.25

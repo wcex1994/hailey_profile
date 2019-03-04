@@ -1,0 +1,7 @@
+
+count,start_station_name,end_station_name,AvgDuration,MaxDuration,MinDuration
+8305,San Francisco Caltrain 2 (330 Townsend),Townsend at 7th,4.944471202087086,1525.3666666666666,2.4
+6931,2nd at Townsend,Harry Bridges Plaza (Ferry Building),8.613194344250495,706.5333333333333,4.9
+6641,Townsend at 7th,San Francisco Caltrain 2 (330 Townsend),4.222152788234705,878.5,1.7166666666666666
+6332,Harry Bridges Plaza (Ferry Building),2nd at Townsend,9.75765950726469,483.6,5.416666666666667
+6200,Embarcadero at Sansome,Steuart at Market,6.6561424731182806,409.48333333333335,3.8666666666666667
