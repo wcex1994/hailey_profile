@@ -50,7 +50,7 @@ Benefit of JSON is it is less verbose comparing to XML. It is object aligned, wh
 
 * **XML**:
 
-A common JSON format looks like the following (same content as the JSON example):
+eXtensible Markup Language is a markup language much like HTML. It is designed to store and transport data, while HTML was designed to focus on the visualization of the data. A common JSON format looks like the following (same content as the JSON example):
 
 ```XML
 <!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook V3.1//EN">
@@ -74,7 +74,9 @@ languages such as DocBook.</para>
  </glossary>
 ```
 
-### Tools 
+Compared to JSother text-based data transmission format, it is quite verbose, which means it can cause higher storage and transportation cost. However, it is still important to learn as the industry still uses XML heavility to transfer the data, expeicially for websites. 
+
+### Tools
 
 There are many different types of tools that can 
 
@@ -85,3 +87,5 @@ Source:
 * <https://en.wikipedia.org/wiki/Comma-separated_values>
 * <https://dzone.com/articles/why-you-cloud-be-using-json-vs-xml>
 * <http://candidjava.com/advantage-and-disadvantage-of-json/>
+* <https://www.w3schools.com/xml/xml_whatis.asp>
+* <https://beginnersbook.com/2018/10/advantages-and-disadvantages-of-xml/>
