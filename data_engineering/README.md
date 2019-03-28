@@ -4,7 +4,7 @@
 This section is mostly a summary of my study in Data Engineering at the UC Berkeley MIDS program. Content are enhanced based upon readings and individual projects. 
 
 The course focuses on understanding the pipeline:
-![alt text](https://github.com/wcex1994/hailey_profile/blob/master/data_engineering/pipeline.jpg "Pipieline")
+![alt text](https://github.com/wcex1994/hailey_profile/blob/master/data_engineering/Pictures/pipeline.jpg "Pipieline")
 
 The components include:
 
@@ -23,6 +23,6 @@ Source: <https://blog.insightdatascience.com/data-science-vs-data-engineering-62
 
 ### Difference between event data and entity data
 
-![alt text](https://github.com/wcex1994/hailey_profile/blob/master/data_engineering/entity_vs_event_data.png "entity_vs_event_data")
+![alt text](https://github.com/wcex1994/hailey_profile/blob/master/data_engineering/Pictures/entity_vs_event_data.png "entity_vs_event_data")
 
 Source: <https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data/>
