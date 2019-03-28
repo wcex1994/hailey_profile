@@ -113,14 +113,21 @@ A great place to understand your command line is here <https://explainshell.com/
 For csv files:
 
 ```bash
-Ls -al ##<https://www.linuxtechi.com/linux-ls-command-examples-beginners/>
-Head -1 xxx.csv ## Looks at the first line in the csv since it is just text file
+#<https://www.linuxtechi.com/linux-ls-command-examples-beginners/>
+Ls -al
+# Looks at the first line in the csv since it is just text file
+Head -1 xxx.csv
+
 Vi xxx.csv
-Cat xxx.csv | wc -l ## Concatenate and have the word count
-Clear ## Clean the window
+
+# Concatenate and have the word count
+Cat xxx.csv | wc -l
+# Clean the window
+Clear
 Cat xxx.csv | head -1
 Cat xxx.csv | tail -1
-Tmux new  ## Be able to go into each line
+# Be able to go into each line
+Tmux new
 ```
 
 For JSON files:
@@ -128,9 +135,12 @@ For JSON files:
 See tutorials here: <https://stedolan.github.io/jq/tutorial/>
 
 ```bash
-Cat views.json | wc -1 ##There is only one single line
-Cat views.json | jq -C ‘.[]|.tableAuthor|.screenName’ | sort | uniq | wc -l ## Count the screenName
-Cat view.json | jq ‘.’ > views-pretty.json ## Less views-pretty.json
+#There is only one single line
+Cat views.json | wc -1
+# Count the screenName
+Cat views.json | jq -C ‘.[]|.tableAuthor|.screenName’ | sort | uniq | wc -l
+# Less views-pretty.json
+Cat view.json | jq ‘.’ > views-pretty.json
 ## You can also do select in jq select(id = ,,)
 ```
 
@@ -148,20 +158,20 @@ Python is an interpreted language which execute one statement at a time. IPython
 Python's Jupyter kernel uses IPython system for the underlying behaviour. You can choose Python 2 or 3 based on your coding habit. The document saved from Jupyter notebook will have .ipynb as the ending.
 
 ```bash
-ipython # to enter the IPython command
-jupyter notebook # to enter the jupyter notebook, which will open the browser usually at localhost 8888
-exit() # or Ctril-D to quite the Ipython command promp
+ipython             # to enter the IPython command
+jupyter notebook    # to enter the jupyter notebook, which will open the browser usually at localhost 8888
+exit()              # or Ctril-D to quite the Ipython command promp
 ```
 
 ```python
-%run file.py # run the python file in an empty namespace, press ctrl-C to interrupt
-b? # ? will return info regarding the object
-add_something?? # will show the function source code if possible
-%load file.py # import a script into the code cell
-%paste # take what in the clipboard
-%cpaste # give you a prompt for pasting the code into and you can paste as many as you want before your execution, leave with Ctrl-C
-%matplotlib # matplot in IPython
-%matplotlib inline # matplot in notebook
+%run file.py        # run the python file in an empty namespace, press ctrl-C to interrupt
+b?                  # ? will return info regarding the object
+add_something??     # will show the function source code if possible
+%load file.py       # import a script into the code cell
+%paste              # take what in the clipboard
+%cpaste             # give you a prompt for pasting the code into and you can paste as many as you want before your execution, leave with Ctrl-C
+%matplotlib         # matplot in IPython
+%matplotlib inline  # matplot in notebook
 ```
 
 % is the magic command in IPython, see <https://ipython.readthedocs.io/en/stable/interactive/magics.html>
