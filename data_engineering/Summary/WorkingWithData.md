@@ -76,6 +76,32 @@ languages such as DocBook.</para>
 
 Compared to JSother text-based data transmission format, it is quite verbose, which means it can cause higher storage and transportation cost. However, it is still important to learn as the industry still uses XML heavility to transfer the data, expeicially for websites.
 
+* **YAML**:
+
+YAML is a human-readable data serialization language. We don't need to mention whether the line is a string or not. Usually it is auto-detected by the parser. Each item has a hyphen in front of it. And idndentation shows the hierarchy.
+
+Example:
+
+```YAML
+---
+- A
+- B
+- C
+- ['a', 'b', 'c']
+
+# Dictionary
+---
+AA: A
+BB: B
+CC: C
+DD:
+  - a
+  - b
+  - c
+```
+
+The '---' means the beginning of YAML doc. "..." to indicate the end of the doc
+
 ### Tools
 
 There are many different types of tools that can faciliatate data understanding based on different types of format:
@@ -99,15 +125,12 @@ Tmux new  ## Be able to go into each line
 
 For JSON files:
 
+See tutorials here: <https://stedolan.github.io/jq/tutorial/>
+
 ```bash
 Cat views.json | wc -1 ##There is only one single line
-Cat views.json | jq ‘.’
-Cat views.json | jq -C ‘.’ | less -r ## Set all the colors (forced)
-Cat views.json | jq -C ‘.[]|.id’  ## Get the array and pull out the id of that
 Cat views.json | jq -C ‘.[]|.tableAuthor|.screenName’ | sort | uniq | wc -l ## Count the screenName
-Cat views.json | jq -C ‘.[]|.description’ | grep consumer ##Where is consumer in the list
 Cat view.json | jq ‘.’ > views-pretty.json ## Less views-pretty.json
-
 ## You can also do select in jq select(id = ,,)
 ```
 
@@ -116,16 +139,47 @@ For XML files:
 ```bash
 Cat views.xml | wc -1 ##There is only one single line
 Cat views.xml | xmllint --format - | pygmentize -l xml | less
-
 ```
 
-* **Jupyter**
-* **Excel**: It is great for csv format to look at the overall dataset.
-* **IDEs**
-* **Spark/Impala/Beeline/HBase/DB Shell**
-* **REPLs**
-* **Other Exploratory Environments**
+* **Jupyter or IPython**:
 
+Python is an interpreted language which execute one statement at a time. IPython shell is an enhanced Python interpreter on the command line, while Jupyter notebook acts as a type of interactive document with kernels.
+
+Python's Jupyter kernel uses IPython system for the underlying behaviour. You can choose Python 2 or 3 based on your coding habit. The document saved from Jupyter notebook will have .ipynb as the ending.
+
+```bash
+ipython # to enter the IPython command
+jupyter notebook # to enter the jupyter notebook, which will open the browser usually at localhost 8888
+exit() # or Ctril-D to quite the Ipython command promp
+```
+
+```python
+%run file.py # run the python file in an empty namespace, press ctrl-C to interrupt
+b? # ? will return info regarding the object
+add_something?? # will show the function source code if possible
+%load file.py # import a script into the code cell
+%paste # take what in the clipboard
+%cpaste # give you a prompt for pasting the code into and you can paste as many as you want before your execution, leave with Ctrl-C
+%matplotlib # matplot in IPython
+%matplotlib inline # matplot in notebook
+```
+
+% is the magic command in IPython, see <https://ipython.readthedocs.io/en/stable/interactive/magics.html>
+For more shorcut in IPython: <https://jakevdp.github.io/PythonDataScienceHandbook/01.02-shell-keyboard-shortcuts.html>
+
+Working with YAML file:
+
+```python
+import yaml
+while open ("ex.yml") as ex:
+    rst = yaml.load(ex)
+    print(rst)
+    type(rst)
+```
+
+* **Excel**: It is great for csv format to look at the overall dataset.
+* **REPLs**: A read-eval-print loop which takes single input and return the result after evaluation
+* **Other Exploratory Environments**
 
 Source:
 
@@ -136,3 +190,5 @@ Source:
 * <http://candidjava.com/advantage-and-disadvantage-of-json/>
 * <https://www.w3schools.com/xml/xml_whatis.asp>
 * <https://beginnersbook.com/2018/10/advantages-and-disadvantages-of-xml/>
+* <https://www.oreilly.com/library/view/python-for-data/9781491957653/ch02.html#ipython_basics>
+* <https://learning.oreilly.com/library/view/network-programmability-and/9781491931240/ch05.html#dataformats>
