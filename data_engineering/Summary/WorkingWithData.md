@@ -17,7 +17,7 @@ Year,Make,Model,Description,Price
 
 CSV file is good for tabular format. It is human readable while easy to implement and parse. However, it has poor support with special characters and is lack of universal standard. This link summarize the csv format quite well: <https://www.shopping-cart-migration.com/must-know-tips/5985-csv-what-why-and-how>
 
-* **JSON**: 
+* **JSON**:
 
 JavaScript Object Notation (JSON) is a lightweight data-interchange format. It is language independent. When exchanging data between website and server, we can only exchange text-based data. JSON is a good one to choose as it is text. We can convert any JS object into JSON and send it to the server, and vice versa. Meanwhile, it is really easy to parse and translate. A common JSON format looks like the following:
 
@@ -74,11 +74,58 @@ languages such as DocBook.</para>
  </glossary>
 ```
 
-Compared to JSother text-based data transmission format, it is quite verbose, which means it can cause higher storage and transportation cost. However, it is still important to learn as the industry still uses XML heavility to transfer the data, expeicially for websites. 
+Compared to JSother text-based data transmission format, it is quite verbose, which means it can cause higher storage and transportation cost. However, it is still important to learn as the industry still uses XML heavility to transfer the data, expeicially for websites.
 
 ### Tools
 
-There are many different types of tools that can 
+There are many different types of tools that can faciliatate data understanding based on different types of format:
+
+* **Command Line**:
+
+A great place to understand your command line is here <https://explainshell.com/>.
+
+For csv files:
+
+```bash
+Ls -al ##<https://www.linuxtechi.com/linux-ls-command-examples-beginners/>
+Head -1 xxx.csv ## Looks at the first line in the csv since it is just text file
+Vi xxx.csv
+Cat xxx.csv | wc -l ## Concatenate and have the word count
+Clear ## Clean the window
+Cat xxx.csv | head -1
+Cat xxx.csv | tail -1
+Tmux new  ## Be able to go into each line
+```
+
+For JSON files:
+
+```bash
+Cat views.json | wc -1 ##There is only one single line
+Cat views.json | jq ‘.’
+Cat views.json | jq -C ‘.’ | less -r ## Set all the colors (forced)
+Cat views.json | jq -C ‘.[]|.id’  ## Get the array and pull out the id of that
+Cat views.json | jq -C ‘.[]|.tableAuthor|.screenName’ | sort | uniq | wc -l ## Count the screenName
+Cat views.json | jq -C ‘.[]|.description’ | grep consumer ##Where is consumer in the list
+Cat view.json | jq ‘.’ > views-pretty.json ## Less views-pretty.json
+
+## You can also do select in jq select(id = ,,)
+```
+
+For XML files:
+
+```bash
+Cat views.xml | wc -1 ##There is only one single line
+Cat views.xml | xmllint --format - | pygmentize -l xml | less
+
+```
+
+* **Jupyter**
+* **Excel**: It is great for csv format to look at the overall dataset.
+* **IDEs**
+* **Spark/Impala/Beeline/HBase/DB Shell**
+* **REPLs**
+* **Other Exploratory Environments**
+
 
 Source:
 
