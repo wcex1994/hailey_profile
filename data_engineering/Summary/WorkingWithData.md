@@ -141,13 +141,14 @@ Cat views.json | wc -1
 Cat views.json | jq -C ‘.[]|.tableAuthor|.screenName’ | sort | uniq | wc -l
 # Less views-pretty.json
 Cat view.json | jq ‘.’ > views-pretty.json
-## You can also do select in jq select(id = ,,)
+# You can also do select in jq select(id = ,,)
 ```
 
 For XML files:
 
 ```bash
-Cat views.xml | wc -1 ##There is only one single line
+#There is only one single line
+Cat views.xml | wc -1
 Cat views.xml | xmllint --format - | pygmentize -l xml | less
 ```
 
