@@ -1,6 +1,6 @@
-## Working with Data
+# Working with Data
 
-### Type of data 
+## Type of data 
 Prior to any storing or querying, we need to understand the format of the data. Each type will use different method to analyze the data. The common few types are the following:
 
 * **CSV**:
@@ -102,7 +102,7 @@ DD:
 
 The '---' means the beginning of YAML doc. "..." to indicate the end of the doc
 
-### Tools
+## Tools
 
 There are many different types of tools that can faciliatate data understanding based on different types of format:
 
@@ -192,7 +192,7 @@ while open ("ex.yml") as ex:
 * **REPLs**: A read-eval-print loop which takes single input and return the result after evaluation
 * **Other Exploratory Environments**
 
-Source:
+## Source
 
 * <https://json.org/example.html>
 * <https://www.w3schools.com/js/js_json_intro.asp>
