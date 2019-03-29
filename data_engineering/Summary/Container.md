@@ -14,6 +14,15 @@ At the same time, VMs and containers are built for different initiatives. VM is 
 
 ## Docker
 
+Containers are old concept back in Unix with `chroot` command. Organizations like FreeBSD, Solaris Zones, SWsoft and Google all have contributed to the development of container solution. And in the end Docker nowadays is the mainstream for containerization by putting all the puzzles together. 
+
+Docker creates a complete solution for the creation and distribution of containers, with Docker Engine and Docker Hub.
+
+* Docker Engine: creating and running containers which is totally open source
+* Docker Hub: cloud service for distributing containers
+
+Docker Hub has enormous number of public container images for download (e.g Java environment image), which reduces replication of same procedure.
+
 ## Sources
 
 * <https://learning.oreilly.com/library/view/using-docker/9781491915752/ch01.html#what_and_why>
