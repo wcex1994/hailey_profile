@@ -48,12 +48,39 @@ Search: Solr search
 
 ## MapReduce
 
-Map
-    Scale out
-Reduce
-    Combine function
+MapReduce is a programming model for data processing. You can run it in multiple languages: Java, Ruby and Python. It is inherently parallel. It works by breaking into two phases: map and reduce. Each phase has key-value pairs as input and output, and the types can be chosen by the programmer. The programmer specifies two functions:
 
-Java MapReduce Code Example
+Map takes a set of data and converts it into another set of data, where individual elements are broken down into tuples (key/value pairs). Secondly, reduce task, which takes the output from a map as an input and combines those data tuples into a smaller set of tuples. As the sequence of the name MapReduce implies, the reduce task is always performed after the map job.
+
+![alt text](https://4zy7s42hws72i51dv3513vnm-wpengine.netdna-ssl.com/wp-content/uploads/2018/02/Traditional-Way-MapReduce-Tutorial-Edureka-4.png "MapReduce Example")
+
+**Map Function**:
+
+Map takes a set of data and converts it into another set of data, where individual elements are broken down into tuples (key/value pairs). The output from the map function is processed by the MapReduce framework before sending to Reduce with *sort* and *group by key*.
+
+**Reduce Function**:
+
+Reduce task takes the output from a map as an input and combines those data tuples into a smaller set of tuples. As the sequence of the name MapReduce implies, the reduce task is always performed after the map job.
+
+### Scale Out
+
+In distributed filesystem, YARN helps to move MapReduce computation to each machine hosting that part of the data.
+
+A MapReduce *job* is a unit of work to perform with input data, MapReduce program and config info. Hadoop runs job by splitting into *tasks*: map task or reduce task. 
+
+### Map in Hadoop
+
+YARN schedules which node runs which task. If a task fails, YARN will reschedule to run it on another node. Haddop divides input to a job into fixed-size pieces as *input splites*. Hadoop will run one map task for each split, which runs the map function for each *record* in the split. Because of the data locality optimization, Hadoop run the map task on a node where the input data resides in HDFS. If the node is busy, YARN will llok for a free node on the same rack, it again not possible, will look for an off-rack node. The opitmal split size is the same as the block size. The result of the map task will be stored in local disks instead of in HDFS because it is a middle product.
+
+### Reduce in Hadoop
+
+The reduce doesn't have data locality.You can speicfy how many reduce tasks you want. When we have multiple reducer, map tasks partition their output. Each create one partition for each reduce task. The records for any given key are all in a single partition. The partitioning can be controlled by user-defined partitioning functions (bucket key with hash function).It is call "the shuffle" for data flow between map and reduce as each reduce task is fed by many map tasks. You can also have zero reduce task, where only off-node data transfer is when map writes to HDFS.
+
+### Combine functions in Hadoop
+
+You can define a combiner function to run on the map output which will be the input for reduce function. Calling the combiner function zero, one, or many times should produce the same output from the reducer.This can cut down the data shuffle.
+
+You can also have Hadoop Streaming.
 
 ## HDFS
 
@@ -64,7 +91,9 @@ Java Interface
 Data Flow
 
 ## YARN
+
 Yet Another Resource Negotiator 
+
 ## Batch
 
 ## Streaming
@@ -75,3 +104,5 @@ Source:
 * <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html#ch_batch>
 * <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html#ch_stream>
 * <https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch04.html>
+* <https://www.tutorialspoint.com/hadoop/hadoop_mapreduce.htm>
+* <https://thirdeyedata.io/hadoop-mapreduce/>
