@@ -166,20 +166,51 @@ hadoop distcp webhdfs://namenode1:50070/foo webhdfs://namenode2:50070/foo
 ![alt text](https://www.researchgate.net/publication/275068128/figure/fig7/AS:324975367081993@1454491573612/Instruction-invoking-path-of-HDFS-read.png "Hadoop Read Data Flow")
 
 ![alt text](https://www.researchgate.net/publication/275068128/figure/fig3/AS:322163497291784@1453821171340/Instruction-invoking-path-of-HDFS-write.png "Hadoop Write Data Flow")
+
 ## YARN
 
-Yet Another Resource Negotiator
+Yet Another Resource Negotiator is Hadoop's cluster resource management system. In MapReduce 1, jobtracker takes care of both job scheduling and task progress monitoring, while YARN splites them up. At the same time, jobtracker needs to store job history. YARN takes the load off to timeline server. It provides APIs for working with clustering resources. Users typically uses higher-level API built upon the YARN api to manage resources.
 
-## Batch
+![alt text](https://d1jnx9ba8s6j9r.cloudfront.net/blog/content/ver.1553858763/uploads/2018/06/Hadoop-v1.0-vs-Hadoop-v2.0.png "YARN")
 
-## Streaming
+YARN runs core services vi two long-running daemon: *resource manager* one per cluster and *node managers* running on all nodes in the cluster to launch and monitor containers. A container executes app-specific process with a constrained set of resources (memory etc).
 
-Source:
+![alt text](https://www.oreilly.com/library/view/hadoop-the-definitive/9781491901687/images/hddg_0402.png "YARN flow")
+
+YARN allows an app to specify locality constraint for the containers it is requesting. YARN app can make resource requests any time while it is running. Or it can be dynamic approach.
+
+### Lifespan
+
+* one app per user job (MapReduce)
+* one app per workflow or user session of jobs
+* long-running app shared by different users
+
+### YARN App
+
+* Directed acyclic graph (DAG): Spark, Tez
+* Stream processing: Spark, Samza, Storm
+* Different users can run different versions of the same app: Apache Slider, Apache Twill.
+
+### Design of YARN
+
+* Scalability
+* Availability
+* Utilization
+* Multitenancy
+
+### YARN Scheduler
+
+* FIFO
+* Capacity
+* Fair Scheduler
+
+![alt text](https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/images/hddg_0403.png "YARN Scheduler")
+
+## Source
 
 * <https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/>
-* <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html#ch_batch>
-* <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html#ch_stream>
 * <https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch04.html>
 * <https://www.tutorialspoint.com/hadoop/hadoop_mapreduce.htm>
 * <https://thirdeyedata.io/hadoop-mapreduce/>
 * <https://www.researchgate.net/figure/Instruction-invoking-path-of-HDFS-read_fig7_275068128>
+* <https://www.edureka.co/blog/hadoop-yarn-tutorial/>
