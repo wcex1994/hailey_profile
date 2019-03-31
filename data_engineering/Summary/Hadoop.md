@@ -26,10 +26,10 @@ Hadoop has evoleved beyond batch processing, as referring to a larger ecosystem 
 
 Now Hadoop can act like many things:
 
-Interactive SQL:"always on" daemon (Impala) or container resue (Hive on Tez)
-Iterative processing: Spark
-Stream processing: Storm, Spark Streaming, Samza
-Search: Solr search
+* Interactive SQL: "always on" daemon (Impala) or container resue (Hive on Tez)
+* Iterative processing: Spark
+* Stream processing: Storm, Spark Streaming, Samza
+* Search: Solr search
 
 ## Comparison
 
