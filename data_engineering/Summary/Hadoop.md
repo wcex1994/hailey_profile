@@ -2,7 +2,7 @@
 
 ## Why Parallel
 
-Nowadays business has increasing volume of the data, but the Read and Write speed has not yet come along with the increasing rate of data expansion. To have a better understanding of the huge amount of data that we are collecting, people think of smart work-arounds to R/W data. Now, we R/W in parallel to or from multiple disks. However, working in parallel has several problems:
+Nowadays business has increasing volume of the data, but the Read and Write speed has not yet come along with the increasing rate of data expansion. To have a better understanding of the huge amount of data that we are collecting, people think of smart work-arounds to R/W data. Now, we R/W in parallel to or from multiple disks. File systems that manage the storage across a network of machines are called distributed filesystems. However, working in parallel has several problems:
 
 * Hardware failure:
 
@@ -82,17 +82,93 @@ You can define a combiner function to run on the map output which will be the in
 
 You can also have Hadoop Streaming.
 
-## HDFS
+## HDFS (Hadoop Distributed Filesystem)
 
-Design
-Concept
-Command Line
-Java Interface
-Data Flow
+### Design
 
+* Very large file
+* Streaming data access (write-once, read-many-time pattern)
+* Commodity hardware
+* Low-latency data access (high throughput of data)
+* Lots of small files (150 bytes)
+* Multiple writer, arbitrary file modifications
+
+### Concept
+
+**Blocks**:
+
+It is the min amount of data that disk can R/W. Filesystem blocks is usually few kilobytes in size, where disk blocks are normally 512 bytes. HDFS has 128MB blocks.
+
+Benefit:
+
+* a file can be larger than any single disk in the network
+* make the unit of abstraction a block rather than a file simplifies the storage subsystem
+* fault tolerance and availability
+
+```bash
+% hdfs fsck / -files -blocks
+```
+
+**Namenodes and Datanodes**:
+
+It has a mster-worker pattern where namenode is the master and the datanodes as workers. The namenodes manages the filesystem namespace (filesys tree and metadata), which stores in form of two files: namespace image and the edit log. The namenodes knows the location of each datanodes, and grab it when the system starts. Datanodes store and retrive bloacks when they are told to, and report back to the namenode periodically with lists of blocks that they are storing. It is important to keep the namenode safe. Usually, we configure a write to local disk as well as a remote NFS mount. You can also have a secodnary namenodes.
+
+**Block Caching**:
+
+frequently-used block can be cached in one datanode's memory on per-file basis. Job scheduler can use the cache file to have better read performance. Namenode needs to have the cache directive to a cache pool. Cache pools are an administrative grouping for managing cache permissions and resource usage.
+
+**HDFS Federation**:
+
+Namenode keeps reference to every file and block in the filesystem in memory, and memory can be a bottleneck, which is why HDFS federation allows a cluster to scale with mroe namenodes where each manage a portion of the filesystem namespace. Each namenode manages a namespace volume (metadata for the namespace) and a block pool containing all the blocks for the files in the namespace. Namespace volumes are independent of each other. See `ViewFileSystem` and the `viewfs:// URIs`.
+
+**HDFS High Availability**:
+
+The namenode is still a single point of failure (SPOF), which takes a long time to recover. Hadoop 2 uses pair of namenodes to support HA. Transition between active and standby is maanged by failover controller, which by default is using ZooKeeper to ensure only one namenode is active. It can be a graceful failover by manually triggerd. During ungraceful failover, HA implementation uses fencing to ensure the previous active namenode is not doing anything damage or corruption.
+
+## Command Line
+
+There are two properties set in pseudodistributed config. 
+
+* We set `fs.defaultFS` to hdfs://localhost/, which is used to set a default filesystem for Hadoop. Filesystems are specified by a URI, and we use hdfs URI to config Hadoop to use HDFS by default. The HDFS daemons will use this property to determine the host and port for namenode. Here we use localhost on default HDFS port 8020.
+
+* We se `dfs.replication` to 1 so HDFS doesn't replicate filesystem blocks by the default factor of three. It is because we are running it on a single datanode.
+
+HDFS is just one implementation of filesystem for Hadoop.
+
+```bash
+# help
+fs -help
+
+# copy from local filesystem to HDFS
+hadoop fs -copyFromLocal input/docs/quangle.txt /user/tom/quangle.txt
+
+# copy to local
+hadoop fs -copyToLocal quangle.txt quangle.copy.txt
+
+# create a folder
+hadoop fs -mkdir books
+hadoop fs -ls .
+
+#list files in root directory of the local filesystem
+
+hadoop fs -ls file:///
+
+# parallel copying 
+hadoop distcp file1 file2
+hadoop distcp dir1 dir2
+hadoop distcp -update dir1 dir2
+hadoop distcp -update -delete -p hdfs://namenode1/foo hdfs://namenode2/foo
+hadoop distcp webhdfs://namenode1:50070/foo webhdfs://namenode2:50070/foo
+```
+
+## Data Flow
+
+![alt text](https://www.researchgate.net/publication/275068128/figure/fig7/AS:324975367081993@1454491573612/Instruction-invoking-path-of-HDFS-read.png "Hadoop Read Data Flow")
+
+![alt text](https://www.researchgate.net/publication/275068128/figure/fig3/AS:322163497291784@1453821171340/Instruction-invoking-path-of-HDFS-write.png "Hadoop Write Data Flow")
 ## YARN
 
-Yet Another Resource Negotiator 
+Yet Another Resource Negotiator
 
 ## Batch
 
@@ -106,3 +182,4 @@ Source:
 * <https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch04.html>
 * <https://www.tutorialspoint.com/hadoop/hadoop_mapreduce.htm>
 * <https://thirdeyedata.io/hadoop-mapreduce/>
+* <https://www.researchgate.net/figure/Instruction-invoking-path-of-HDFS-read_fig7_275068128>
