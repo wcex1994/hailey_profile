@@ -46,7 +46,13 @@ bin/kafka-console-consumer.sh --new-consumer --bootstrap-server=localhost:9092 -
 curl -X DELETE http://localhost:8083/connectors/dump-kafka-config
 ```
 
-Kafka Connector includes two parts, *connectors* and *tasks*. The connector is responsbile for 1) Determining how many tasks will run for the connector 1) Deciding how to split the data-copying work between the tasks 3) Getting configurations for the tasks from the workers and passing it along. Task is responsible for actually getting the data i nand out of Kafka. Kafka Connect's worker processes are the container processes that execute the connectors and tasks. The best way to understand workers is to realize that connectors and tasks are responsible for the “moving data” part of data integration, while the workers are responsible for the REST API, configuration management, reliability, high availability, scaling, and load balancing. This seperation is a benefit from using Connect API.
+Kafka Connector includes two parts, *connectors* and *tasks*. The connector is responsbile for:
+
+1) Determining how many tasks will run for the connector 
+2) Deciding how to split the data-copying work between the tasks 
+3) Getting configurations for the tasks from the workers and passing it along.
+
+Task is responsible for actually getting the data i nand out of Kafka. Kafka Connect's worker processes are the container processes that execute the connectors and tasks. The best way to understand workers is to realize that connectors and tasks are responsible for the “moving data” part of data integration, while the workers are responsible for the REST API, configuration management, reliability, high availability, scaling, and load balancing. This seperation is a benefit from using Connect API.
 
 
 
