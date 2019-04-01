@@ -117,6 +117,10 @@ Each executor is its own Java Virtual Machine (JVM), and an executor cannot span
 
 ## Streaming DataFrame/Dataset
 
+![alt text](https://spark.apache.org/docs/latest/img/structured-streaming-late-data.png "Watermark")
+
+![alt text](https://spark.apache.org/docs/latest/img/structured-streaming-watermark-update-mode.png "Update Mode")
+
 
 Source:
 
