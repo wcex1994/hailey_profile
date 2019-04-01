@@ -36,7 +36,44 @@ Master node will have programs written by the users while Spark represents large
 
 The objects that comprise RDDs are called *partitions* and may be (but do not need to be) computed on different nodes of a distributed system. Spark cluster manager handle the starting and distributing the Spark executors across a distributed sys according to config. The Spark execution engine itself distributes data across the executors for a computation.
 
+**Transformations Versus Actions**:
+
+There are two types of functions defined on RDDs: actions and transformations. Actions are functions that return something that is not an RDD, including a side effect, and transformations are functions that return another RDD.
+
+Each Spark program **must** contain an action, since actions either bring information back to the driver or write the data to stable storage.
+
+Transformation has two types:
+
+* narrow dependencies:
+
+    Conceptually, narrow transformations are those in which each partition in the child RDD has simple, finite dependencies on partitions in the parent RDD.
+
+![alt text](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/assets/hpsp_0202.png "narrow dependencies")
+
+* wide dependencies:
+
+    transformations with wide dependencies cannot be executed on arbitrary rows and instead require the data to be partitioned in a particular way
+
+![alt text](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/assets/hpsp_0203.png "wide dependencies")
+
 **Immutable**: transofrming an RDD returns a new RDD
+
+RDD can be created by:
+
+* by transforming an existing RDD
+* from a SparkContext, which is the API’s gateway to Spark for your application
+* converting a DataFrame or Dataset (created from the SparkSession).
+
+Three properties required for RDD:
+
+* `partitions()`: list of partition objects that make up the RDD
+* `iterator(p, parentIters)`: a function for computing an iterator of each partition
+* `dependencies()`:and a list of dependencies on other RDDs
+
+Optional properties:
+
+* `partitioner()`
+* `preferredLocations(p)`
 
 **In-memory**: keep an RDD loaded in memory on executor nodes through life time.
 
@@ -59,6 +96,24 @@ Debugging might be hard as it is a one-stop process.
 * In memory as deserialized Java objects: This form of in-memory storage is the fastest, since it reduces serialization time; however, it may not be the most memory efficient, since it requires the data to be stored as objects.
 * As serialized data: This approach may be slower, since serialized data is more CPU-intensive to read than deserialized data; however, it is often more memory efficient, since it allows the user to choose a more efficient representation.
 * On disk: This strategy is obviously slower for repeated computations, but can be more fault-tolerant for long sequences of transformations, and may be the only feasible option for enormous computations.
+
+## Job Scheduling
+
+A Spark application consists of a driver process, which is where the high-level Spark logic is written, and a series of executor processes that can be scattered across the nodes of a cluster. It will send instruction to the executors. One cluster can run several app concurrently. The applications are scheduled by the cluster manager and correspond to one SparkContext.
+
+**Allocation**:
+
+Static allocation or dynamic allocation
+
+**Application**:
+
+A Spark application begins when a SparkContext is started.
+
+Each executor is its own Java Virtual Machine (JVM), and an executor cannot span multiple nodes although one node may contain several executors.The SparkContext determines how many resources are allotted to each executor. When a Spark job is launched, each executor has slots for running the tasks needed to compute an RDD.
+
+![alt text](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/assets/hpsp_0205.png "Anatomy")
+
+![alt text](https://learning.oreilly.com/library/view/high-performance-spark/9781491943199/assets/hpsp_0206.png "Anatomy")
 
 ## Streaming DataFrame/Dataset
 
